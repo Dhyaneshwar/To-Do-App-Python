@@ -29,22 +29,26 @@ while True :
                 print(f'{index + 1}--{todo.title()}')
 
         case 'edit':
-            user_input = int(user_msg.split(' ', 1)[1].strip())
-            default_todos = read_file(todo_storage)
             try:
+                user_input = int(user_msg.split(' ', 1)[1].strip())
+                default_todos = read_file(todo_storage)
                 default_todos[user_input-1] = input("Enter the edited todo:- ") + "\n"
                 write_file(todo_storage, default_todos)
+            except ValueError as VE:
+                print(f'ERROR: {VE}. Please enter a number after edit\n')
             except IndexError as IE:
-                print(f'ERROR: {IE}. Please enter a valid index')
+                print(f'ERROR: {IE}. Please enter a valid index\n')
 
         case "complete":
-            user_input = int(user_msg.split(' ', 1)[1].strip())
-            default_todos = read_file(todo_storage)
             try:
+                user_input = int(user_msg.split(' ', 1)[1].strip())
+                default_todos = read_file(todo_storage)
                 default_todos.pop(user_input-1)
                 write_file(todo_storage, default_todos)
+            except ValueError as VE:
+                print(f'ERROR: {VE}. Please enter a number after complete\n')
             except IndexError as IE:
-                print(f'ERROR: {IE}. Please enter a valid index')
+                print(f'ERROR: {IE}. Please enter a valid index\n')
 
         case "exit":
             print("---Thank you--- \n")
