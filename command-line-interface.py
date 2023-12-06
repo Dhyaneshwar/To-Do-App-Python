@@ -1,13 +1,5 @@
 from constants import todo_storage 
-
-def read_file(file_loc):
-    with open(file_loc, 'r') as file:
-        content = file.readlines()
-        return content
-    
-def write_file(file_loc, content):
-    with open(file_loc, 'w') as file:
-        file.writelines(content)
+from functions import read_file, write_file
 
 while True :
     user_msg = input("Enter add, show, edit, complete or exit:- ")
@@ -23,7 +15,7 @@ while True :
 
         case "show":
             print("Todos are:-")
-            default_todos = read_file(todo_storage)
+            default_todos = read_file()
             new_todos = [todo.strip('\n') for todo in default_todos]
             for (index, todo) in enumerate(new_todos):
                 print(f'{index + 1}--{todo.title()}')
@@ -31,9 +23,9 @@ while True :
         case 'edit':
             try:
                 user_input = int(user_msg.split(' ', 1)[1].strip())
-                default_todos = read_file(todo_storage)
+                default_todos = read_file()
                 default_todos[user_input-1] = input("Enter the edited todo:- ") + "\n"
-                write_file(todo_storage, default_todos)
+                write_file(default_todos)
             except ValueError as VE:
                 print(f'ERROR: {VE}. Please enter a number after edit\n')
             except IndexError as IE:
@@ -42,9 +34,9 @@ while True :
         case "complete":
             try:
                 user_input = int(user_msg.split(' ', 1)[1].strip())
-                default_todos = read_file(todo_storage)
+                default_todos = read_file()
                 default_todos.pop(user_input-1)
-                write_file(todo_storage, default_todos)
+                write_file(default_todos)
             except ValueError as VE:
                 print(f'ERROR: {VE}. Please enter a number after complete\n')
             except IndexError as IE:
