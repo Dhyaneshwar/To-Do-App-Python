@@ -1,11 +1,12 @@
-from constants import todo_storage 
+from constants import todo_cli_storage
 
-def read_file(file_loc = todo_storage):
+def read_file(file_loc = todo_cli_storage):
     with open(file_loc, 'r') as file:
         content = file.readlines()
+        content = [todo.title() for todo in content]
         return content
     
-def write_file(content, file_loc=todo_storage):
+def write_file(content, file_loc=todo_cli_storage):
     with open(file_loc, 'w') as file:
         file.writelines(content)
 

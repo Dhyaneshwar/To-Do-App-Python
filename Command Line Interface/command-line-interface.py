@@ -1,4 +1,14 @@
-from constants import todo_storage 
+import sys
+import os
+
+# Get the parent directory
+current_dir = os.path.dirname(os.path.realpath(__file__))
+
+# Add the parent directory to sys.path
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+from constants import todo_cli_storage 
 from functions import read_file, write_file
 
 while True :
@@ -10,7 +20,7 @@ while True :
         case 'add' | 'new':
             user_input = user_msg.split(' ', 1)[1].strip() + '\n'
             # Appending the newly added data to file
-            with open(todo_storage, 'a') as file:
+            with open(todo_cli_storage, 'a') as file:
                 file.writelines(user_input)
 
         case "show":
