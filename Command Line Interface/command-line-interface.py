@@ -8,8 +8,8 @@ current_dir = os.path.dirname(os.path.realpath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
-from constants import todo_cli_storage 
-from functions import read_file, write_file
+from Common.constants import todo_cli_storage 
+from Common.functions import read_file, write_file
 
 while True :
     user_msg = input("Enter add, show, edit, complete or exit:- ")
@@ -20,8 +20,8 @@ while True :
         case 'add' | 'new':
             user_input = user_msg.split(' ', 1)[1].strip() + '\n'
             # Appending the newly added data to file
-            with open(todo_cli_storage, 'a') as file:
-                file.writelines(user_input)
+            default_todos.append(user_input)
+            write_file(default_todos)
 
         case "show":
             print("Todos are:-")

@@ -8,8 +8,8 @@ current_dir = os.path.dirname(os.path.realpath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
-from constants import todo_gui_storage 
-from functions import read_file, write_file
+from Common.constants import todo_gui_storage 
+from Common.functions import read_file, write_file
 import PySimpleGUI as sg
 
 label = sg.Text("Type in a To-do")
@@ -36,7 +36,7 @@ window = sg.Window(
 while True:
     event, values = window.read()
     user_input = values['todo'].strip()
-    if user_input == "" and event != 'todos':
+    if user_input == "" and (event not in ['todos', 'Exit']):
         continue
 
     user_input = user_input + '\n'

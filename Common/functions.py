@@ -1,4 +1,4 @@
-from constants import todo_cli_storage
+from Common.constants import todo_cli_storage
 
 def read_file(file_loc = todo_cli_storage):
     with open(file_loc, 'r') as file:

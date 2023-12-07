@@ -2,4 +2,3 @@ Code
 Football
 Play Chess
 Clean
-Play Chess 2.o

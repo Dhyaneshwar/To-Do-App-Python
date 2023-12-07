@@ -1,4 +1,4 @@
-code
-clean
-football
-Play chess
+Code
+Clean
+Football
+Play Chess
