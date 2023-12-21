@@ -11,7 +11,9 @@ sys.path.append(parent_dir)
 from Common.constants import todo_gui_storage 
 from Common.functions import read_file, write_file
 import PySimpleGUI as sg
+import time
 
+clock = sg.Text("", key='clock')
 label = sg.Text("Type in a To-do")
 input_box = sg.InputText(tooltip="Enter a To-do", key='todo')
 add_button = sg.Button("Add")
@@ -29,12 +31,14 @@ exit_button = sg.Button("Exit")
 
 window = sg.Window(
     "My To-Do App", 
-    layout=[[label], [input_box, add_button], [available_todos, edit_button, complete_button], [exit_button]],
+    layout=[[clock],
+        [label], [input_box, add_button], [available_todos, edit_button, complete_button], [exit_button]],
     font=('Times New Roman', 20)
 )
 
 while True:
-    event, values = window.read()
+    event, values = window.read(timeout=10)
+    window['clock'].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
     user_input = values['todo'].strip()
     if user_input == "" and (event not in ['todos', 'Exit']):
         continue
@@ -44,7 +48,7 @@ while True:
 
     match event:
         case 'Add':
-            default_todos.append(user_input)
+            default_todos.append(user_input.title())
             write_file(default_todos, todo_gui_storage)
             window['todos'].update(values=default_todos)
             window['todo'].update(value='')
@@ -53,7 +57,7 @@ while True:
             try:
                 new_todo_input = values['todos'][0]
                 edit_index = default_todos.index(new_todo_input)
-                default_todos[edit_index] = user_input
+                default_todos[edit_index] = user_input.title()
                 write_file(default_todos, todo_gui_storage)
 
                 window['todos'].update(values=default_todos)
