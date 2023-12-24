@@ -1,12 +1,22 @@
 import React from "react";
+import "./Checkbox.css";
 
-const Checkbox = (props) => {
-  console.log("inside checkbox");
+const Checkbox = ({ id, value, setTodoCompleted }) => {
+  const handleOnChange = (event) => {
+    setTodoCompleted(Number(event.target.id));
+  };
+
   return (
     <>
-      <input type="checkbox" id={props.id} />
-      <label htmlFor={props.id}>{props.value}</label>
-      <br/>
+      <input
+        className="checkbox"
+        type="checkbox"
+        id={id}
+        name={value}
+        onChange={handleOnChange}
+      />
+      <label htmlFor={id}>{value}</label>
+      <br />
     </>
   );
 };

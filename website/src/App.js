@@ -5,8 +5,10 @@ import { TodoList } from "./components/TodoList";
 function App() {
   return (
     <>
-      <Headers />
-      <TodoList />
+      <div style={{ margin: "auto", width: "40%" }}>
+        <Headers />
+        <TodoList />
+      </div>
     </>
   );
 }

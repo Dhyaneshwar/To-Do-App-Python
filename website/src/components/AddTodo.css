@@ -1,0 +1,19 @@
+.AddTodoInput {
+  color: black;
+  margin-right: 20px;
+  margin-top: 20px;
+  background-color: #d0c9c9;
+  border-radius: 10px;
+  width: 631px;
+  height: 49px;
+  padding: 0px 20px;
+  font-size: 20px;
+}
+
+.AddButton {
+  background-color: #f36363;
+  border-radius: 10px;
+  width: 67px;
+  height: 49px;
+  font-size: 20px;
+}

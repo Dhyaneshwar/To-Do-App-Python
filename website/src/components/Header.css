@@ -9,3 +9,8 @@ h2 {
 h4 {
   font: 24px normal normal;
 }
+
+h5 {
+  font: italic normal normal 24px Georgia, serif;
+  margin: 0px;
+}
