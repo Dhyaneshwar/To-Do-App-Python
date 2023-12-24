@@ -16,6 +16,7 @@ export const AddTodo = ({ setTodos }) => {
   };
 
   const handleAddTodo = () => {
+    if (newTodo === "") return;
     setTodos((todoList) => [...todoList, newTodo]);
     setNewTodo("");
   };
